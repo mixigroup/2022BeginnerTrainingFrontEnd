@@ -1,0 +1,3 @@
+[submodule "packages/api-server/submodules/spa_guide_sns_server"]
+	path = packages/api-server/submodules/spa_guide_sns_server
+	url = git@github.com:MokkeMeguru/spa_guide_sns_server.git

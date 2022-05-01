@@ -1,0 +1,34 @@
+{
+  "name": "react18-bootcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ladle:client": "npm run ladle --workspace=client",
+    "dev:client": "npm run dev --workspace=client",
+    "build:client": "npm run dev --workspace=client",
+    "build:api-client": "npm run build --workspace=api-server",
+    "code-generate:api-client": "npm run code-generate --workspace=api-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutaroyoshikawa/react18-bootcamp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yutaroyoshikawa/react18-bootcamp/issues"
+  },
+  "homepage": "https://github.com/yutaroyoshikawa/react18-bootcamp#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-storybook": "^0.5.7"
+  }
+}
