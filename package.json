@@ -1,5 +1,5 @@
 {
-  "name": "react18-bootcamp",
+  "name": "2022BeginnerTrainingFrontEnd",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yutaroyoshikawa/react18-bootcamp.git"
+    "url": "git+https://github.com/mixigroup/2022BeginnerTrainingFrontEnd.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yutaroyoshikawa/react18-bootcamp/issues"
+    "url": "https://github.com/mixigroup/2022BeginnerTrainingFrontEnd/issues"
   },
-  "homepage": "https://github.com/yutaroyoshikawa/react18-bootcamp#readme",
+  "homepage": "https://github.com/mixigroup/2022BeginnerTrainingFrontEnd#readme",
   "workspaces": [
     "packages/*"
   ],

@@ -18,15 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yutaroyoshikawa/react18-bootcamp.git"
+    "url": "git+https://github.com/mixigroup/2022BeginnerTrainingFrontEnd.git"
   },
   "keywords": [],
   "author": "yutaroyoshikawa",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yutaroyoshikawa/react18-bootcamp/issues"
+    "url": "https://github.com/mixigroup/2022BeginnerTrainingFrontEnd/issues"
   },
-  "homepage": "https://github.com/yutaroyoshikawa/react18-bootcamp#readme",
+  "homepage": "https://github.com/mixigroup/2022BeginnerTrainingFrontEnd#readme",
   "dependencies": {
     "@emotion/css": "^11.7.1",
     "@fortawesome/fontawesome-svg-core": "^1.3.0",

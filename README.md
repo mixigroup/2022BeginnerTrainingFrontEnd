@@ -1,11 +1,11 @@
-# React 18 Bootcamp
+# 2022BeginnerTrainingFrontEnd
 ## Getting started
 
 このリポジトリでは Git Submodules を利用しています。
 Git Submodules を含めた clone には下記のコマンドを実行してください。
 
 ```sh
-git clone --recursive https://github.com/yutaroyoshikawa/react18-bootcamp.git
+git clone --recursive https://github.com/mixigroup/2022BeginnerTrainingFrontEnd.git
 ```
 
 gh コマンドを利用している場合や、 `--recursive` オプションをつけずに clone した場合は、下記のコマンドを実行することで Git Submodules を clone することができます。
@@ -48,7 +48,7 @@ Git Submodules で API サーバーの Git リポジトリを紐づけていま�
 API サーバーをローカルで立ち上げるには下記の手順に従ってください。
 
 ```sh
-cd packages/api-server/spa_guide_sns_server
+cd packages/api-server/submodules/spa_guide_sns_server
 npm install --production
 rm -rf db.sqlite3
 touch db.sqlite3
