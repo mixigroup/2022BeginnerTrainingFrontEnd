@@ -4,7 +4,7 @@ import { setAppElement } from "react-modal";
 import { useThemeClass } from "./features/app/modules/themeHooks";
 import { enableIcon } from "./lib/icon";
 import { globalStyles } from "./lib/style";
-import { Router } from "./router";
+import { Router } from "./Router";
 
 enableIcon();
 globalStyles();
