@@ -1,13 +1,17 @@
 import type { CommunityEvent } from "api-server";
 import type { FC } from "react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useMemo, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { formatDate } from "../../../lib/date";
 import { css, theme } from "../../../lib/style";
 import { Heading } from "../../app/components/Heading";
 import { Image } from "../../app/components/Image";
+import { CommunityEventComment } from "../../communityEventComments/components/CommunityEventComment";
 import { CommunityEventCommentForm } from "../../communityEventComments/components/CommunityEventCommentForm";
-import { useFetchListCommunityEventComment } from "../../communityEventComments/modules/listCommunityEventCommentHooks";
+import {
+  useFetchListCommunityEventComment,
+  useListCommunityEventComment,
+} from "../../communityEventComments/modules/listCommunityEventCommentHooks";
 import { usePostCommunityEventComment } from "../../communityEventComments/modules/postCommunityEventCommentHooks";
 
 const TRANSITION_TIMEOUT = 300;
@@ -112,7 +116,14 @@ export const CommunityEventSummary: FC<CommunityEventSummaryProps> = ({
               ref={toggleRef}
             >
               <CommunityEventCommentForm onSubmit={requestPostComment} />
-              {isOpenToggle && <div>TODO: コメント表示</div>}
+              {isOpenToggle && (
+                <Suspense fallback={null}>
+                  <CommunityEventCommentList
+                    communityId={communityId}
+                    eventId={communityEvent.id}
+                  />
+                </Suspense>
+              )}
             </div>
           </CSSTransition>
         </details>
@@ -188,4 +199,60 @@ const commentsToggleSummaryStyle = css({
   textAlign: "center",
   cursor: "pointer",
   padding: `${theme(({ space }) => space[2])} 0`,
+});
+
+const CommunityEventCommentList: FC<{
+  communityId: string;
+  eventId: string;
+}> = ({ communityId, eventId }) => {
+  const { data } = useListCommunityEventComment({
+    communityId,
+    eventId,
+  });
+
+  if (!data) {
+    return null;
+  }
+
+  if (data.length < 1) {
+    return <p className={noDataStyle()}>コメントはまだありません</p>;
+  }
+
+  return (
+    <ul className={listStyle()}>
+      {data.map(({ comment, user }) => (
+        <li key={comment.id} className={listItemStyle()}>
+          <CommunityEventComment communityEventComment={comment} user={user} />
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+const noDataStyle = css({
+  color: theme(({ colors }) => colors.text),
+  fontFamily: theme(({ fonts }) => fonts.base),
+  fontSize: theme(({ fontSizes }) => fontSizes[2]),
+  margin: "0 auto",
+  padding: 0,
+});
+
+const listStyle = css({
+  listStyle: "none",
+  margin: 0,
+  padding: 0,
+  maxHeight: "500px",
+  overflowY: "auto",
+});
+
+const listItemStyle = css({
+  margin: 0,
+  "&:not(:last-child)::after": {
+    content: '""',
+    display: "block",
+    width: "90%",
+    height: "1px",
+    margin: `${theme(({ space }) => space[1])} auto`,
+    backgroundColor: "#ddd",
+  },
 });
