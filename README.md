@@ -1,7 +1,11 @@
 # 2022BeginnerTrainingFrontEnd
+
 ## Getting started
 
+Node.js v16 系を推奨しています。
+
 このリポジトリでは Git Submodules を利用しています。
+
 Git Submodules を含めた clone には下記のコマンドを実行してください。
 
 ```sh
@@ -32,6 +36,7 @@ npm workspace を利用して API サーバーと web クライアントの２�
 Web クライアントのアプリケーション本体のパッケージです。
 
 Web API として api-server パッケージに依存しているので、アプリケーション本体の利用のためには api-server のクライアント向けコードの生成と API サーバーの用意が必要です。
+
 アプリケーションの利用には、依存パッケージのセットアップの後に下記の通り従ってください。
 
 ```sh
@@ -43,6 +48,7 @@ npm run dev
 ### api-server
 
 API サーバー本体の参照と Open API 定義 から生成した Web クライアント向けコードを ES Module として export しているパッケージです。
+
 Git Submodules で API サーバーの Git リポジトリを紐づけています。
 
 API サーバーをローカルで立ち上げるには下記の手順に従ってください。
@@ -57,9 +63,11 @@ npm run start_release
 ```
 
 上記のコマンドで http://localhost:3000 に API サーバーが立ち上がります。
+
 なお http://localhost:3000/api-docs で OpenAPI の API 定義を確認することができます。
 
 API のスキーマは openapi.yaml に定義されており、スキーマ定義からクライアント向けのコードを ES Modules として生成することができます。
+
 クライアント向けのコードを生成するには下記の手順に従ってください。
 
 ```sh
