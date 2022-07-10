@@ -1,9 +1,31 @@
-import { Community, CommunityMember, CommunityService } from "api-server";
+import {
+  ApiError,
+  Community,
+  CommunityMember,
+  CommunityService,
+} from "api-server";
+import useSWR from "swr";
+import { apiClient, handleApiError } from "../../../lib/api";
 
-export type CommunityResponse = {
+type CommunityResponse = {
   community: Community;
   isJoined?: boolean | null | undefined;
   members: CommunityMember[];
+};
+
+export const useCommunity = ({ communityId }: { communityId: string }) => {
+  const { data, error } = useSWR<CommunityResponse, Error | ApiError>(
+    getKey({ communityId }),
+    fetcher,
+    {
+      suspense: true,
+    }
+  );
+
+  return {
+    data,
+    error,
+  };
 };
 
 const getKey = ({ communityId }: { communityId: string }) => {
@@ -13,6 +35,14 @@ const getKey = ({ communityId }: { communityId: string }) => {
   };
 };
 
-export const fetcher = async (_props: ReturnType<typeof getKey>) => {
-  return undefined;
+const fetcher = async ({ communityId }: ReturnType<typeof getKey>) => {
+  const result = await apiClient.community
+    .getCommunity({ communityId })
+    .catch(handleApiError);
+
+  if (result instanceof Error) {
+    throw result;
+  }
+
+  return result;
 };

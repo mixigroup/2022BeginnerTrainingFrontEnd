@@ -3,7 +3,6 @@ import type { FC } from "react";
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
-import { dummyCommunity } from "../../../testdata/community";
 import { BaseLayout } from "../../features/app/components/BaseLayout";
 import { Button } from "../../features/app/components/Button";
 import { Heading } from "../../features/app/components/Heading";
@@ -13,6 +12,7 @@ import { SquareButton } from "../../features/app/components/SquareButton";
 import { replaceImageSize } from "../../features/app/modules/imageUrlUtils";
 import { useTheme } from "../../features/app/modules/themeHooks";
 import { CommunityDetails } from "../../features/community/components/CommunityDetails";
+import { useCommunity } from "../../features/community/modules/communityHooks";
 import { CommunityEventSummary } from "../../features/communityEvent/components/CommunityEventSummary";
 import { CreateCommunityEventFormModal } from "../../features/communityEvent/components/CreateCommunityEventFormModal";
 import {
@@ -42,11 +42,6 @@ export const CommunityDetailPage: FC = () => {
   );
 };
 
-// API から取得
-const data = {
-  community: dummyCommunity(),
-};
-
 const CommunityDetailPageContent: FC = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const { id } = useParams();
@@ -56,6 +51,7 @@ const CommunityDetailPageContent: FC = () => {
     communityId: id ?? "",
     requestSize: 5,
   });
+  const { data } = useCommunity({ communityId: id ?? "" });
 
   const thumbnailUrl = useMemo(() => {
     if (typeof data?.community.imageUrl === "undefined") {
