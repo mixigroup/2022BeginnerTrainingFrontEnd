@@ -17,7 +17,7 @@ import { CommunityEventSummary } from "../../features/communityEvent/components/
 import { CreateCommunityEventFormModal } from "../../features/communityEvent/components/CreateCommunityEventFormModal";
 import {
   useFetchListCommunityEvent,
-  useListCommunityEvent,
+  useListCommunityEvent
 } from "../../features/communityEvent/modules/communityEventsHooks";
 import { useCreateCommunityEvent } from "../../features/communityEvent/modules/createCommunityEventHooks";
 import { css, theme } from "../../lib/style";
@@ -85,7 +85,17 @@ const CommunityDetailPageContent: FC = () => {
         return;
       }
 
-      alert("TODO: イベント作成処理実装");
+      const res = await createCommunityEvent({
+        communityId: id,
+        name,
+        holdAt,
+        details,
+        category,
+      });
+
+      if (res instanceof Error) {
+        return;
+      }
 
       await fetchListCommunityEvent();
 
